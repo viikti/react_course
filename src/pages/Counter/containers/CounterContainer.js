@@ -12,30 +12,29 @@ class CounterContainer extends Component {
     };
   }
 
-  handleIncrement = () => {
-    this.setState((state) => {
-      const incrementValue = state.countValue + 1;
-      return {
-        countValue: incrementValue,
-        isEven: !this.state.isEven,
-      };
-    });
-  };
+  componentDidUpdate(_, prevState) {
+    const evenOrOdd = this.state.countValue;
+    if (prevState.countValue !== evenOrOdd) {
+      this.setState({ isEven: evenOrOdd % 2 === 0 ? true : false });
+    }
+  }
 
-  handleReset = () => {
-    this.setState({ countValue: 0 });
+  handleIncrement = () => {
+    this.setState((state) => ({
+      countValue: state.countValue + 2,
+    }));
   };
 
   handleDecrement = () => {
     if (this.state.countValue > 0) {
-      this.setState((state) => {
-        const decrementValue = state.countValue - 1;
-        return {
-          countValue: decrementValue,
-          isEven: !this.state.isEven,
-        };
-      });
+      this.setState((state) => ({
+        countValue: state.countValue - 1,
+      }));
     }
+  };
+
+  handleReset = () => {
+    this.setState({ countValue: 0 });
   };
 
   render() {

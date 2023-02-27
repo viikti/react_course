@@ -9,9 +9,7 @@ const CounterView = ({
   handleDecrement,
   isEven,
 }) => {
-  const even = ` even number !`;
-  const odd = ` odd number !`;
-
+  const evenOrOddNumber = isEven ? ` even number !` : ` odd number !`;
   return (
     <div
       className={styles.wrapper}
@@ -19,7 +17,7 @@ const CounterView = ({
     >
       <div className={styles.display}>{counterValue}</div>
 
-      <div className={styles.infoSection}>Entered {isEven ? even : odd}</div>
+      <div className={styles.infoSection}>Entered {evenOrOddNumber}</div>
 
       <div className={styles.controlButtons}>
         <button className={styles.controlButton} onClick={handleDecrement}>
@@ -42,5 +40,6 @@ CounterView.propTypes = {
   handleReset: PropTypes.func,
   handleDecrement: PropTypes.func,
   isEven: PropTypes.bool,
+  evenOrOddNumber: PropTypes.string,
 };
 export default CounterView;
