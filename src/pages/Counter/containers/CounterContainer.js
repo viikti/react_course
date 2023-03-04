@@ -13,15 +13,15 @@ class CounterContainer extends Component {
   }
 
   componentDidUpdate(_, prevState) {
-    const evenOrOdd = this.state.countValue;
-    if (prevState.countValue !== evenOrOdd) {
-      this.setState({ isEven: evenOrOdd % 2 === 0 ? true : false });
+    const currentCountValue = this.state.countValue;
+    if (prevState.countValue !== currentCountValue) {
+      this.setState({ isEven: currentCountValue % 2 === 0 ? true : false });
     }
   }
 
   handleIncrement = () => {
     this.setState((state) => ({
-      countValue: state.countValue + 2,
+      countValue: state.countValue + 1,
     }));
   };
 
