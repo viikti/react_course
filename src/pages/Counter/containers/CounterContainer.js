@@ -1,6 +1,6 @@
 import { Component } from "react";
-import CounterView from "../components/CounterView";
-import Layout from "../components/Layout";
+import CounterView from "../../../commonComponents/CounterView";
+import Layout from "commonComponents/Layout";
 
 class CounterContainer extends Component {
   constructor(props) {
