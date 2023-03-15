@@ -6,6 +6,7 @@ import CounterOfAllCounters from "pages/counterOfAllCounters/containers/CounterO
 import ReduxCountainerToDoListManager from "pages/ToDoListManager/container/ReduxCountainerToDoListManager";
 
 import { ROUTE_NAMES } from "./routeNames";
+import FormsContainer from "../pages/Forms/containers/FormsContainer";
 
 const Router = () => {
   return (
@@ -19,7 +20,10 @@ const Router = () => {
       <Route
         path={ROUTE_NAMES.FUNCTION_COUNTER}
         element={<FunctionalCounterContainer />}
-      />{" "}
+      />
+
+      <Route path={ROUTE_NAMES.FORMS} element={<FormsContainer />} />
+
       <Route
         path={ROUTE_NAMES.REDUX_LIST_MANAGER}
         element={<ReduxCountainerToDoListManager />}
