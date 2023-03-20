@@ -1,25 +1,33 @@
 import { useDispatch, useSelector } from "react-redux";
 
 import { useForm } from "hooks";
+import { useState } from "react";
 
 import Layout from "../components/Layout";
-import { createAction } from "redux-actions";
+
 import CreateTodoForm from "../components/createTodoForm";
+import { todosList } from "../selector";
 
 import {
-  completeTodo,
   createTodo,
+  completeTodo,
   deleteTodo,
   editTodo,
   saveTodo,
   undoTodo,
-} from "../actions";
-import { todosSelector } from "../selector";
+} from "../reducers";
 
 const TodosContainer = () => {
   const dispatch = useDispatch();
-  const todos = useSelector(todosSelector);
+
+  const todos = useSelector(todosList);
   const { form, handleReset, handleChange } = useForm({ taskText: "" });
+
+  // const [isExpanded, setExpanded] = useState(false);
+  //
+  // const handleAccordionToggle = (expanded) => {
+  //   setExpanded(!expanded);
+  // };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -56,6 +64,8 @@ const TodosContainer = () => {
       handleTaskEditCancel={handleTaskEditCancel}
       handleTaskCancel={handleTaskEditCancel}
       handleTaskSave={handleTaskSave}
+      // handleAccordionToggle={handleAccordionToggle}
+      // expanded={isExpanded}
     />
   );
 };

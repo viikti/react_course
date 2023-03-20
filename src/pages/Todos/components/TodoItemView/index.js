@@ -1,5 +1,6 @@
 import { useForm } from "../../../../hooks";
 
+import PropTypes from "prop-types";
 import styles from "./styles.module.scss";
 
 const TodoItemView = ({
@@ -34,7 +35,6 @@ const TodoItemView = ({
         </button>
 
         <button
-          className={styles.deleteButton}
           onClick={() => {
             handleCancel(id);
           }}
@@ -44,6 +44,14 @@ const TodoItemView = ({
       </div>
     </div>
   );
+};
+
+TodoItemView.propTypes = {
+  id: PropTypes.string.isRequired,
+  taskNumber: PropTypes.number.isRequired,
+  taskText: PropTypes.string.isRequired,
+  handleSave: PropTypes.func.isRequired,
+  handleCancel: PropTypes.func.isRequired,
 };
 
 export default TodoItemView;

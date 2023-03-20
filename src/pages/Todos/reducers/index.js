@@ -1,68 +1,63 @@
-import { handleActions } from "redux-actions";
-
-import * as action from "../actions";
+import { createSlice } from "@reduxjs/toolkit";
 import { v4 as uuid } from "uuid";
-import { startTransition } from "react";
 
 const initialState = {
   todos: [],
 };
 
-const todosReducer = handleActions(
-  {
-    [action.createTodo]: (state, { payload: taskData }) => {
-      const copy = structuredClone(state);
-
+const todosSlice = createSlice({
+  name: "reduxTodo",
+  initialState: initialState,
+  reducers: {
+    createTodo: (state, { payload: taskData }) => {
       const newTask = {
         id: uuid(),
         text: taskData.taskText,
-        isEdited: false,
         isCompleted: false,
+        isEdited: false,
       };
 
-      copy.todos.unshift(newTask);
-
-      return copy;
+      state.todos.unshift(newTask);
     },
+    deleteTodo: (state, { payload: taskId }) => {
+      const findIndexElement = state.todos.findIndex(({ id }) => id === taskId);
 
-    [action.deleteTodo]: (state, { payload: taskId }) => {
-      const copy = structuredClone(state);
-      const itemIndexTodoDelete = copy.todos.findIndex(
-        ({ id }) => id === taskId
-      );
-      copy.todos.splice(itemIndexTodoDelete, 1);
-      return copy;
+      state.todos.splice(findIndexElement, 1);
     },
-    [action.completeTodo]: (state, { payload: taskId }) => {
-      const copy = structuredClone(state);
-      const foundTodo = copy.todos.find(({ id }) => id === taskId);
+    completeTodo: (state, { payload: taskId }) => {
+      const foundTodo = state.todos.find(({ id }) => id === taskId);
+
       foundTodo.isCompleted = true;
-      return copy;
     },
-    [action.editTodo]: (state, { payload: taskId }) => {
-      const copy = structuredClone(state);
-      const foundTodo = copy.todos.find(({ id }) => id === taskId);
-      foundTodo.isEdited = true;
-      return copy;
-    },
-    [action.undoTodo]: (state, { payload: taskId }) => {
-      const copy = structuredClone(state);
-      const foundTodo = copy.todos.find(({ id }) => id === taskId);
-      foundTodo.isEdited = false;
-      return copy;
-    },
-    [action.saveTodo]: (state, { payload: updatedTask }) => {
-      const { id: taskId, newText } = updatedTask;
-      const copy = structuredClone(state);
+    editTodo: (state, { payload: taskId }) => {
+      const foundTodo = state.todos.find(({ id }) => id === taskId);
 
-      const foundTodo = copy.todos.find(({ id }) => id === taskId);
+      foundTodo.isEdited = true;
+    },
+    undoTodo: (state, { payload: taskId }) => {
+      const foundTodo = state.todos.find(({ id }) => id === taskId);
+
+      foundTodo.isEdited = false;
+    },
+    saveTodo: (state, { payload: updatedTask }) => {
+      const { id: taskId, newText } = updatedTask;
+
+      const foundTodo = state.todos.find(({ id }) => id === taskId);
 
       foundTodo.text = newText;
+
       foundTodo.isEdited = false;
-      return copy;
     },
   },
-  initialState
-);
+});
 
-export default todosReducer;
+export const {
+  createTodo,
+  deleteTodo,
+  completeTodo,
+  editTodo,
+  undoTodo,
+  saveTodo,
+} = todosSlice.actions;
+
+export default todosSlice.reducer;

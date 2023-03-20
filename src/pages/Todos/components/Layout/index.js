@@ -2,6 +2,7 @@ import React from "react";
 import CreateTodoForm from "../createTodoForm";
 import TodoItem from "../TodoItem";
 
+import PropTypes from "prop-types";
 import styles from "./styles.module.scss";
 import TodoItemView from "../TodoItemView";
 
@@ -53,6 +54,17 @@ const Layout = ({
       </div>
     </div>
   );
+};
+Layout.propTypes = {
+  todos: PropTypes.array.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  taskText: PropTypes.string.isRequired,
+  handleTaskTextChange: PropTypes.func.isRequired,
+  handleTaskDelete: PropTypes.func.isRequired,
+  handleTaskComplete: PropTypes.func.isRequired,
+  handleTaskEdit: PropTypes.func.isRequired,
+  handleTaskCancel: PropTypes.func.isRequired,
+  handleTaskSave: PropTypes.func.isRequired,
 };
 
 export default Layout;
