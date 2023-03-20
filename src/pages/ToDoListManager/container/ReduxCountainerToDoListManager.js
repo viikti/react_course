@@ -18,7 +18,7 @@ const ReduxToDoListManager = () => {
 
   const dispatch = useDispatch();
 
-  const TaskManager = useSelector(taskSelector);
+  // const taskManager = useSelector(taskSelector);
   const handleCreateListManager = (id) => {
     dispatch(createToDoList(id));
   };

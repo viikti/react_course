@@ -4,7 +4,7 @@ const useForm = (initialFormValues) => {
   const [form, setForm] = useState(initialFormValues);
 
   const handleChange = useCallback(({ target }) => {
-    const { name, value } = target;
+    const { name, value, type } = target;
     setForm((state) => ({
       ...state,
       [name]: value,

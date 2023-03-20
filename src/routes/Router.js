@@ -7,6 +7,7 @@ import ReduxCountainerToDoListManager from "pages/ToDoListManager/container/Redu
 
 import { ROUTE_NAMES } from "./routeNames";
 import FormsContainer from "../pages/Forms/containers/FormsContainer";
+import TodosContainers from "../pages/Todos/containers/TodosContainers";
 
 const Router = () => {
   return (
@@ -23,6 +24,7 @@ const Router = () => {
       />
 
       <Route path={ROUTE_NAMES.FORMS} element={<FormsContainer />} />
+      <Route path={ROUTE_NAMES.TODO} element={<TodosContainers />} />
 
       <Route
         path={ROUTE_NAMES.REDUX_LIST_MANAGER}

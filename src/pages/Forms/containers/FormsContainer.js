@@ -12,7 +12,12 @@ const FormsContainer = () => {
     <>
       <h1>Forms</h1>
 
-      <form onSubmit={onsubmit}>
+      <form
+        onSubmit={(event) => {
+          event.preventDefault();
+          console.log(form);
+        }}
+      >
         <label>
           <p>Email</p>
           <input

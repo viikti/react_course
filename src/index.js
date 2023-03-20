@@ -10,6 +10,7 @@ import configureStore from "./store/configureStore";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const store = configureStore();
+
 root.render(
   <BrowserRouter>
     <Provider store={store}>
